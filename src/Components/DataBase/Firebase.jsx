@@ -15,3 +15,4 @@ const database = app.firestore();
 const authentication = app.auth();
 
 export {authentication,database};
+

@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-
+import "./NavBar.css"
 const NavBar = (props) => {
 
   return (
     <>
-      <nav className={props.mode === 'light' ? `navbar navbar-expand-lg navbar-dark bg-primary` : `navbar navbar-expand-lg navbar-dark bg-dark`}>
+      <nav className={props.mode === 'light' ? `navbar navbar-expand-lg navbar-light bg-primary1` : `navbar navbar-expand-lg navbar-dark bg-dark`}>
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">Visitor Managment System</NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@ const NavBar = (props) => {
               </li>
               </ul>
                 <div className="form-check form-switch">
-                  <label className={props.mode === "light" ? "form-check-label inactive text-light" : "form-check-label text-light"} htmlFor="flexSwitchCheckDefault">{props.mode==="light"?"Enable Dark Mode":"Disable Dark Mode"}</label>
+                  <label className={props.mode === "light" ? "form-check-label  text-dark" : "form-check-label text-light"} htmlFor="flexSwitchCheckDefault">{props.mode==="light"?"Enable Dark Mode":"Disable Dark Mode"}</label>
                   <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={props.ToggleMode} />
                 </div>
           </div>

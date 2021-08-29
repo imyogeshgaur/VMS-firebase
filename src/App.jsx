@@ -11,6 +11,15 @@ const App = () => {
 
   const [mode, setMode] = useState("light")
   const [alert, setAlert] = useState(null);
+  const [visible, setVisible] = useState("password");
+
+  const handleVisiblity = ()=>{
+      if(visible === "password"){
+        setVisible("text");
+      }else{
+        setVisible("password");
+      }
+  }
 
   const ToggleMode = () => {
     if (mode === "light") {
@@ -38,16 +47,16 @@ const App = () => {
       <Alert alert={alert}/>
       <Switch>
         <Route exact path="/admin/login" >
-          <AdminLoginForm  mode={mode} showAlert={showAlert}/>
+          <AdminLoginForm  mode={mode} showAlert={showAlert}  visible={visible} handleVisiblity={handleVisiblity}/>
         </Route>
         <Route exact path="/admin/signup" >
-          <AdminSignUpForm mode={mode} showAlert={showAlert}/>
+          <AdminSignUpForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity}/>
         </Route>
         <Route exact path="/user/login">
-          <UserLoginForm mode={mode} showAlert={showAlert}/>
+          <UserLoginForm mode={mode} showAlert={showAlert}  visible={visible} handleVisiblity={handleVisiblity}/>
         </Route>
         <Route exact path="/user/signup" >
-          <UserSignUpForm mode={mode} showAlert={showAlert}/>
+          <UserSignUpForm mode={mode} showAlert={showAlert}  visible={visible} handleVisiblity={handleVisiblity}/>
         </Route>
       </Switch>
     </>
