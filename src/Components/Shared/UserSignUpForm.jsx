@@ -1,8 +1,16 @@
 import aes256 from 'aes256';
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom';
 import { authentication, database } from '../DataBase/Firebase';
+import Webcam from "react-webcam";
 
+ <Webcam />;
+
+ const videoConstraints = {
+    width: 220,
+    height: 200,
+    facingMode: "user"
+};
 
 const UserSignUpForm = (props) => {
     const [state, setstate] = useState({
@@ -24,10 +32,20 @@ const UserSignUpForm = (props) => {
         });
     }
 
+    const [userImage,setImage]=useState('');
+    const webcamRef = useRef(null);
+
+    
+    const capture = (
+        () => {
+        const imageSrc = webcamRef.current.getScreenshot();
+        setImage(imageSrc)
+        });
+
     const { userName, userEmail, userPhone, userAdd, userPass } = state;
 
     const handleSubmit = async () => {
-        if (!userName || !userEmail || !userPhone || !userAdd || !userPass ) {
+        if (!userImage || !userName || !userEmail || !userPhone || !userAdd || !userPass ) {
             props.showAlert("Please fill All The Data !!!", "warning")
         } else {
             if (userPass.length < 6) {
@@ -39,7 +57,7 @@ const UserSignUpForm = (props) => {
                 try {
                     await authentication.createUserWithEmailAndPassword(userEmail, userPass);
                     const passUser = aes256.encrypt('mynameisyogeshgaurandiamawebdeveloper', userPass);
-                    await database.collection('user').add({ userName, userEmail, userPhone, userAdd, passUser });
+                    await database.collection('user').add({userImage, userName, userEmail, userPhone, userAdd, passUser });
                     props.showAlert("Data Enterd Sucessfully !!!", "success");
                 } catch (error) {
                     props.showAlert(`${error.message}`, "danger")
@@ -65,7 +83,7 @@ const UserSignUpForm = (props) => {
                                     <input type="text" className="form-control" placeholder="Enter Your Phone Number" autoComplete="no" value={state.userPhone} name="userPhone" onChange={handleInput} />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="text" className="form-control" placeholder="Enter Your Address " autoComplete="no" value={state.userAdd1} name="userAdd1" onChange={handleInput} />
+                                    <input type="text" className="form-control" placeholder="Enter Your Address " autoComplete="no" value={state.userAdd} name="userAdd" onChange={handleInput} />
                                 </div>
                                 <div className="mb-3">
                                     <input type={props.visible} className="form-control" placeholder="Enter Your Password" autoComplete="no" value={state.userPass} name="userPass" onChange={handleInput} />
@@ -81,11 +99,25 @@ const UserSignUpForm = (props) => {
                         </div>
                     </div>
                     <div className="card" style={{ width: "22rem" ,backgroundImage:props.mode==="light" ? `linear-gradient(#169af1,aqua)`:`linear-gradient(0deg, #000000 0%, #04619f 74%)`}}>
-                    <img src="..." className="card-img-top" alt="..." />
+                    {userImage === '' ? <Webcam
+                    audio={false}
+                    height={200}
+                    ref={webcamRef}
+                    screenshotFormat="image/jpeg"
+                    width={220}
+                    videoConstraints={videoConstraints}
+                /> : <img src={userImage} alt="userImg"/>}
                     <div className="card-body">
                         <h5 className={props.mode === "light" ? `card-title text-dark`:`card-title text-light`}>Live Preview</h5>
-                        <NavLink to="/" className="btn btn-primary">Capture</NavLink>
-                        <NavLink to="/" className="btn btn-secondary mx-2">Re Capture</NavLink>
+                        <NavLink to="/" className="btn btn-primary" onClick={(e)=>{
+                            e.preventDefault();
+                            capture()}}>Capture</NavLink>
+                        <NavLink to="/" className="btn btn-secondary mx-2"
+                          onClick={(e)=>{
+                              e.preventDefault();
+                              setImage('');
+                          }}
+                        >Re Capture</NavLink>
                     </div>
                 </div>
                 </div>
