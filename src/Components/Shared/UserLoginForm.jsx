@@ -51,7 +51,7 @@ const UserLoginForm = (props) => {
                             <div className="container-fluid my-5" style={{ width: "20rem" }}>
                                 <h3 style={{ textAlign: "center" }} className={props.mode === "light" ? "text-dark" : "text-light"}>Login Here</h3>
                                 <div className="mb-3 mt-4">
-                                    <input type="text" className="form-control" placeholder="Enter your POC" autoComplete="no" value={state.userField1} name="userField1" onChange={handleInput} />
+                                    <input type="text" className="form-control" placeholder="Enter your POC" autoComplete="no" value={state.userPoc} name="userPoc" onChange={handleInput} />
                                 </div>
                                 <div className="mb-3 mt-4">
                                     <input type="text" className="form-control" placeholder="Enter Your UserName/Email" autoComplete="no" value={state.userField1} name="userField1" onChange={handleInput} />
