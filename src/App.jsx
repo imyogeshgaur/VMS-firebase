@@ -13,12 +13,12 @@ const App = () => {
   const [alert, setAlert] = useState(null);
   const [visible, setVisible] = useState("password");
 
-  const handleVisiblity = ()=>{
-      if(visible === "password"){
-        setVisible("text");
-      }else{
-        setVisible("password");
-      }
+  const handleVisiblity = () => {
+    if (visible === "password") {
+      setVisible("text");
+    } else {
+      setVisible("password");
+    }
   }
 
   const ToggleMode = () => {
@@ -31,32 +31,32 @@ const App = () => {
     }
   }
 
-  const showAlert = (message, type)=>{
+  const showAlert = (message, type) => {
     setAlert({
       message,
       type
     })
     setTimeout(() => {
-        setAlert(null);
+      setAlert(null);
     }, 1500);
-}
+  }
 
   return (
     <>
       <NavBar mode={mode} ToggleMode={ToggleMode} />
-      <Alert alert={alert}/>
+      <Alert alert={alert} />
       <Switch>
         <Route exact path="/admin/login" >
-          <AdminLoginForm  mode={mode} showAlert={showAlert}  visible={visible} handleVisiblity={handleVisiblity}/>
+          <AdminLoginForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
         <Route exact path="/admin/signup" >
-          <AdminSignUpForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity}/>
+          <AdminSignUpForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
         <Route exact path="/user/login">
-          <UserLoginForm mode={mode} showAlert={showAlert}  visible={visible} handleVisiblity={handleVisiblity}/>
+          <UserLoginForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
         <Route exact path="/user/signup" >
-          <UserSignUpForm mode={mode} showAlert={showAlert}  visible={visible} handleVisiblity={handleVisiblity}/>
+          <UserSignUpForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
       </Switch>
     </>

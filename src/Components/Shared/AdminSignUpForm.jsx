@@ -10,7 +10,7 @@ const AdminSignUpForm = (props) => {
         adminAdd: "",
         adminPass: ""
     });
- 
+
     const handleInput = (e) => {
         const { name, value } = e.target;
 
@@ -70,8 +70,8 @@ const AdminSignUpForm = (props) => {
                                     <input type={props.visible} className="form-control" placeholder="Enter Your Password" autoComplete="no" value={state.adminPass} name="adminPass" onChange={handleInput} />
                                 </div>
                                 <div className="form-check mb-2">
-                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={props.handleVisiblity}/>
-                                    <label className={props.mode === "light" ? "form-check-label":"form-check-label text-light"} for="flexCheckDefault">
+                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={props.handleVisiblity} />
+                                    <label className={props.mode === "light" ? "form-check-label" : "form-check-label text-light"} for="flexCheckDefault">
                                         Show Password
                                     </label>
                                 </div>

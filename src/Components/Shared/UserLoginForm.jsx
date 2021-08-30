@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import { authentication } from '../DataBase/Firebase';
+import { authentication, database } from '../DataBase/Firebase';
 
 
 const UserLoginForm = (props) => {
     const history = useHistory();
     const [state, setstate] = useState({
+        userPoc:"",
         userField1: "",
         userField2: ""
     });
@@ -20,11 +21,11 @@ const UserLoginForm = (props) => {
         })
     }
 
-    const { userField1, userField2 } = state
+    const {userPoc, userField1, userField2 } = state
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!userField1 || !userField2) {
+        if (!userPoc || !userField1 || !userField2) {
             props.showAlert("Please Fill all Fields Correctly !!!", "danger");
         } else {
             if (userField2.length < 6) {
@@ -32,6 +33,7 @@ const UserLoginForm = (props) => {
             } else {
                 try {
                     await authentication.signInWithEmailAndPassword(userField1, userField2);
+                    await database.collection('user').add({userPoc})
                     props.showAlert("Logged In Sucessfully !!!!", "success");
                     history.push('/');
                 } catch (error) {
@@ -48,6 +50,9 @@ const UserLoginForm = (props) => {
                         <div className="card-body">
                             <div className="container-fluid my-5" style={{ width: "20rem" }}>
                                 <h3 style={{ textAlign: "center" }} className={props.mode === "light" ? "text-dark" : "text-light"}>Login Here</h3>
+                                <div className="mb-3 mt-4">
+                                    <input type="text" className="form-control" placeholder="Enter your POC" autoComplete="no" value={state.userField1} name="userField1" onChange={handleInput} />
+                                </div>
                                 <div className="mb-3 mt-4">
                                     <input type="text" className="form-control" placeholder="Enter Your UserName/Email" autoComplete="no" value={state.userField1} name="userField1" onChange={handleInput} />
                                 </div>

@@ -55,12 +55,12 @@ const AdminLoginForm = (props) => {
                                     <input type={props.visible} className="form-control" placeholder="Enter Your Password" autoComplete="no" value={state.adminField2} name="adminField2" onChange={handleInput} />
                                 </div>
                                 <div className="form-check mb-2">
-                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={props.handleVisiblity}/>
-                                    <label className={props.mode === "light" ? "form-check-label":"form-check-label text-light"} for="flexCheckDefault">
+                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={props.handleVisiblity} />
+                                    <label className={props.mode === "light" ? "form-check-label" : "form-check-label text-light"} for="flexCheckDefault">
                                         Show Password
                                     </label>
                                 </div>
-                                <button className={props.mode==="light"?`btn btn-light text-dark`:`btn btn-success`} onClick={handleSubmit}>Submit</button>
+                                <button className={props.mode === "light" ? `btn btn-light text-dark` : `btn btn-success`} onClick={handleSubmit}>Submit</button>
                             </div>
                         </div>
                     </div>

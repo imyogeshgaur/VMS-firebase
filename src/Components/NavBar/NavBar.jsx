@@ -24,11 +24,11 @@ const NavBar = (props) => {
               <li className="nav-item">
                 <NavLink className="nav-link" to="/user/signup">User Sign Up</NavLink>
               </li>
-              </ul>
-                <div className="form-check form-switch">
-                  <label className={props.mode === "light" ? "form-check-label  text-dark" : "form-check-label text-light"} htmlFor="flexSwitchCheckDefault">{props.mode==="light"?"Enable Dark Mode":"Disable Dark Mode"}</label>
-                  <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={props.ToggleMode} />
-                </div>
+            </ul>
+            <div className="form-check form-switch">
+              <label className={props.mode === "light" ? "form-check-label  text-dark" : "form-check-label text-light"} htmlFor="flexSwitchCheckDefault">{props.mode === "light" ? "Enable Dark Mode" : "Disable Dark Mode"}</label>
+              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={props.ToggleMode} />
+            </div>
           </div>
         </div>
       </nav>
