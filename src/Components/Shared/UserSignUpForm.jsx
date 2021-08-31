@@ -90,7 +90,7 @@ const UserSignUpForm = (props) => {
                                 </div>
                                 <div className="form-check mb-2">
                                     <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={props.handleVisiblity} />
-                                    <label className={props.mode === "light" ? "form-check-label" : "form-check-label text-light"} for="flexCheckDefault">
+                                    <label className={props.mode === "light" ? "form-check-label" : "form-check-label text-light"} htmlFor="flexCheckDefault">
                                         Show Password
                                     </label>
                                 </div>
@@ -98,7 +98,7 @@ const UserSignUpForm = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="card" style={{ width: "22rem", backgroundImage: props.mode === "light" ? `linear-gradient(#169af1,aqua)` : `linear-gradient(0deg, #000000 0%, #04619f 74%)` }}>
+                    <div className="card text-center mx-1 mt-1" style={{ width: "22rem", backgroundImage: props.mode === "light" ? `linear-gradient(#169af1,aqua)` : `linear-gradient(360deg, #000000 0%, #04619f 74%)` , alignItems:"center"}}>
                         {userImage === '' ? <Webcam
                             audio={false}
                             height={200}
@@ -106,7 +106,9 @@ const UserSignUpForm = (props) => {
                             screenshotFormat="image/jpeg"
                             width={220}
                             videoConstraints={videoConstraints}
-                        /> : <img src={userImage} alt="userImg" />}
+                            className="mt-3"
+                        /> : <img src={userImage} alt="userImg"  width="220"
+                        height="200" style={{display:"flex", justifyContent:"center" ,alignItems:"center"}} className="mt-3"/>}
                         <div className="card-body">
                             <h5 className={props.mode === "light" ? `card-title text-dark` : `card-title text-light`}>Live Preview</h5>
                             <NavLink to="/" className="btn btn-primary" onClick={(e) => {
