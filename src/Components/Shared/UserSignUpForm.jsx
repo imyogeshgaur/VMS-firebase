@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { authentication, database } from '../DataBase/Firebase';
 import Webcam from "react-webcam";
 import validator from "validator"
-import AdminSignUpForm from './AdminSignUpForm';
 
 <Webcam />;
 
