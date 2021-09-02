@@ -3,6 +3,8 @@ import React, { useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom';
 import { authentication, database } from '../DataBase/Firebase';
 import Webcam from "react-webcam";
+import validator from "validator"
+import AdminSignUpForm from './AdminSignUpForm';
 
 <Webcam />;
 
@@ -48,10 +50,12 @@ const UserSignUpForm = (props) => {
         if (!userImage || !userName || !userEmail || !userPhone || !userAdd || !userPass) {
             props.showAlert("Please fill All The Data !!!", "warning")
         } else {
-            if (userPass.length < 6) {
+            if (!validator.isStrongPassword(userPass)) {
                 props.showAlert("Invalid Password !!!", "danger");
             } else if (userPhone.length !== 10) {
                 props.showAlert("Invalid Phone Number !!!", "danger");
+            }else if(!validator.isEmail(userEmail)){
+                props.showAlert("Invalid Email !!!", "danger");
             }
             else {
                 try {

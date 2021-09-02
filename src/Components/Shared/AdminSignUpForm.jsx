@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { authentication, database } from '../DataBase/Firebase';
 import aes256 from "aes256"
+import validator from "validator"
 
 const AdminSignUpForm = (props) => {
     const [state, setstate] = useState({
@@ -29,10 +30,12 @@ const AdminSignUpForm = (props) => {
         if (!adminName || !adminEmail || !adminPhone || !adminAdd || !adminPass) {
             props.showAlert("Please Fill all The Fields !!!", "warning");
         } else {
-            if (adminPass.length < 6) {
+            if (!validator.isStrongPassword(adminPass)) {
                 props.showAlert("Invalid Password !!!", "danger");
             } else if (adminPhone.length !== 10) {
                 props.showAlert("Invalid Phone Number !!!", "danger");
+            }else if(!validator.isEmail(adminEmail)){
+                props.showAlert("Invalid Email !!!", "danger");
             }
             else {
                 try {
