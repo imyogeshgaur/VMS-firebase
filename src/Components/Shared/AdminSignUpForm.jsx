@@ -67,7 +67,7 @@ const AdminSignUpForm = (props) => {
                                     <input type="text" className="form-control" placeholder="Enter Your Phone Number" autoComplete="no" value={state.adminPhone} name="adminPhone" onChange={handleInput} />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="text" className="form-control" placeholder="Enter Your Address" autoComplete="no" value={state.adminAdd2} name="adminAdd2" onChange={handleInput} />
+                                    <input type="text" className="form-control" placeholder="Enter Your Address" autoComplete="no" value={state.adminAdd} name="adminAdd" onChange={handleInput} />
                                 </div>
                                 <div className="mb-3">
                                     <input type={props.visible} className="form-control" placeholder="Enter Your Password" autoComplete="no" value={state.adminPass} name="adminPass" onChange={handleInput} />
