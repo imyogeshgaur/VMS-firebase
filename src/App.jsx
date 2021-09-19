@@ -6,8 +6,14 @@ import AdminSignUpForm from "./Components/Forms/AdminSignUpForm"
 import UserSignUpForm from "./Components/Forms/UserSignUpForm"
 import UserLoginForm from "./Components/Forms/UserLoginForm"
 import Alert from './Components/Alert'
-import DashBorad from "./Components/assets/DashBorad"
-import Profile from './Components/DashBoards/Profile'
+import AdminProfile from './Components/Screens/AdminProfile'
+import UserDashBoard from './Components/assets/UserDashboard'
+import AdminDashBoard from './Components/assets/AdminDashboard'
+import UserProfile from './Components/Screens/UserProfile'
+import AdminSupport from './Components/Screens/AdminSupport'
+import UserSupport from './Components/Screens/UserSupport'
+import UserDetails from './Components/Screens/UserDetails'
+
 
 const App = () => {
 
@@ -69,14 +75,26 @@ const App = () => {
           <Alert alert={alert} />
           <UserSignUpForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
-        <Route exact path="/admin/dashboard" >
-          <DashBorad mode={mode} ToggleMode={ToggleMode}/>
+        <Route exact path="/admin/dashboard/" >
+          <AdminDashBoard mode={mode} ToggleMode={ToggleMode}/>
+        </Route>
+        <Route exact path="/adminprofile" >
+            <AdminProfile mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/userprofile" >
+            <UserProfile mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/userdetails" >
+            <UserDetails mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/adminsupport" >
+            <AdminSupport mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/usersupport" >
+            <UserSupport mode={mode} ToggleMode={ToggleMode} />
         </Route>
         <Route exact path="/user/dashboard" >
-          <DashBorad mode={mode} ToggleMode={ToggleMode}/>
-        </Route>
-        <Route exact path="/dashboard/profile" >
-          <Profile mode={mode} ToggleMode={ToggleMode}/>
+          <UserDashBoard mode={mode} ToggleMode={ToggleMode}/>
         </Route>
       </Switch>
     </>
