@@ -23,7 +23,7 @@ const AdminSignUpForm = (props) => {
         });
     }
 
-    const { adminName, adminEmail, adminPhone, adminAdd, adminPass } = state;
+    const { adminName, adminEmail, adminPhone, adminAdd, adminPass} = state;
 
     const handleSumbit = async (e) => {
         e.preventDefault();
@@ -34,7 +34,7 @@ const AdminSignUpForm = (props) => {
                 props.showAlert("Invalid Password !!!", "danger");
             } else if (adminPhone.length !== 10) {
                 props.showAlert("Invalid Phone Number !!!", "danger");
-            }else if(!validator.isEmail(adminEmail)){
+            } else if (!validator.isEmail(adminEmail)) {
                 props.showAlert("Invalid Email !!!", "danger");
             }
             else {
@@ -43,6 +43,13 @@ const AdminSignUpForm = (props) => {
                     const passAdmin = await aes256.encrypt("mynameisyogeshgaurandiamawebdevloper", adminPass);
                     await database.collection('admin').add({ adminName, adminEmail, adminPhone, adminAdd, passAdmin });
                     props.showAlert("Data Added Sucessfully !!!", "success");
+                    setstate({
+                        adminName: "",
+                        adminEmail: "",
+                        adminPhone: "",
+                        adminAdd: "",
+                        adminPass: "",
+                    })
                 } catch (error) {
                     props.showAlert(`${error.message}`, "danger");
                 }

@@ -19,7 +19,8 @@ const UserSignUpForm = (props) => {
         userEmail: "",
         userPhone: "",
         userAdd: "",
-        userPass: ""
+        userPass: "",
+        userPoc:"",
     });
 
     const handleInput = (e) => {
@@ -43,10 +44,10 @@ const UserSignUpForm = (props) => {
             setImage(imageSrc)
         });
 
-    const { userName, userEmail, userPhone, userAdd, userPass } = state;
+    const { userName, userEmail, userPhone, userAdd, userPass, userPoc } = state;
 
     const handleSubmit = async () => {
-        if (!userImage || !userName || !userEmail || !userPhone || !userAdd || !userPass) {
+        if (!userImage || !userName || !userEmail || !userPhone || !userAdd || !userPass || !userPoc) {
             props.showAlert("Please fill All The Data !!!", "warning")
         } else {
             if (!validator.isStrongPassword(userPass)) {
@@ -60,8 +61,16 @@ const UserSignUpForm = (props) => {
                 try {
                     await authentication.createUserWithEmailAndPassword(userEmail, userPass);
                     const passUser = aes256.encrypt('mynameisyogeshgaurandiamawebdeveloper', userPass);
-                    await database.collection('user').add({ userImage, userName, userEmail, userPhone, userAdd, passUser });
+                    await database.collection('user').add({ userImage, userName, userEmail, userPhone, userAdd, passUser, userPoc });
                     props.showAlert("Data Enterd Sucessfully !!!", "success");
+                    setstate({
+                        userName: "",
+                        userEmail: "",
+                        userPhone: "",
+                        userAdd: "",
+                        userPass: "",
+                        userPoc:""
+                    })
                 } catch (error) {
                     props.showAlert(`${error.message}`, "danger")
                 }
@@ -87,6 +96,9 @@ const UserSignUpForm = (props) => {
                                 </div>
                                 <div className="mb-3">
                                     <input type="text" className="form-control" placeholder="Enter Your Address " autoComplete="no" value={state.userAdd} name="userAdd" onChange={handleInput} />
+                                </div>
+                                <div className="mb-3">
+                                    <input type="text" className="form-control" placeholder="Enter your Person Of Contact " autoComplete="no" value={state.userPoc} name="userPoc" onChange={handleInput} />
                                 </div>
                                 <div className="mb-3">
                                     <input type={props.visible} className="form-control" placeholder="Enter Your Password" autoComplete="no" value={state.userPass} name="userPass" onChange={handleInput} />
