@@ -6,19 +6,19 @@ const AdminSideBar = (props) => {
         <>
             <ul>
                 <li>
-                    <NavLink to="/adminprofile">
+                    <NavLink to="/admin/dashboard/adminprofile">
                         <i className={props.mode === "light" ? "form-check-label  text-dark fa fa-user" : "form-check-label text-light fa fa-user"} aria-hidden="true"></i>
                         <span className={props.mode === "light" ? "form-check-label  text-dark" : "form-check-label text-light"}>My Profile</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/userdetails">
+                    <NavLink to="/admin/dashboard/userdetails">
                         <i className={props.mode === "light" ? "form-check-label  text-dark fa fa-users" : "form-check-label text-light fa fa-users"} aria-hidden="true"></i>
                         <span className={props.mode === "light" ? "form-check-label  text-dark" : "form-check-label text-light"}>Users Details</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/adminsupport">
+                    <NavLink to="/admin/dashboard/adminsupport">
                         <i className={props.mode === "light" ? "form-check-label  text-dark fa fa-comment-o" : "form-check-label text-light fa fa-comment-o"} aria-hidden="true"></i>
                         <span className={props.mode === "light" ? "form-check-label  text-dark" : "form-check-label text-light"}>Support</span>
                     </NavLink>
