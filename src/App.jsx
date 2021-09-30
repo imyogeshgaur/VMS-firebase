@@ -17,9 +17,13 @@ import UserDetails from './Components/Screens/UserDetails'
 
 const App = () => {
 
+//Common States
+
   const [mode, setMode] = useState("light")
   const [alert, setAlert] = useState(null);
   const [visible, setVisible] = useState("password");
+
+// Function  To Handle Visiblity of Password in every component 
 
   const handleVisiblity = () => {
     if (visible === "password") {
@@ -28,6 +32,8 @@ const App = () => {
       setVisible("password");
     }
   }
+
+  // Function  To Switch between dark and light theme in every component 
 
   const ToggleMode = () => {
     if (mode === "light") {
@@ -38,6 +44,8 @@ const App = () => {
       setMode("light")
     }
   }
+
+// Function  To Show Alert in every component 
 
   const showAlert = (message, type) => {
     setAlert({
@@ -52,49 +60,55 @@ const App = () => {
   return (
     <>
       <Switch>
-      <Route exact path="/">
-      <NavBar mode={mode} ToggleMode={ToggleMode} />
-      </Route>
+        <Route exact path="/">
+          <NavBar mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+
+        {/* Admin Routes */}   
+
         <Route exact path="/admin/login" >
-        <NavBar mode={mode} ToggleMode={ToggleMode} />
+          <NavBar mode={mode} ToggleMode={ToggleMode} />
           <Alert alert={alert} />
           <AdminLoginForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
         <Route exact path="/admin/signup" >
-        <NavBar mode={mode} ToggleMode={ToggleMode} />
+          <NavBar mode={mode} ToggleMode={ToggleMode} />
           <Alert alert={alert} />
           <AdminSignUpForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
+        <Route exact path="/admin/dashboard/" >
+          <AdminDashBoard mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/admin/dashboard/adminprofile" >
+          <AdminProfile mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/admin/dashboard/userdetails" >
+          <UserDetails mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/admin/dashboard/adminsupport" >
+          <AdminSupport mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+
+        {/* User Routes */}
+
         <Route exact path="/user/login">
-        <NavBar mode={mode} ToggleMode={ToggleMode} />
+          <NavBar mode={mode} ToggleMode={ToggleMode} />
           <Alert alert={alert} />
           <UserLoginForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
         <Route exact path="/user/signup" >
-        <NavBar mode={mode} ToggleMode={ToggleMode} />
+          <NavBar mode={mode} ToggleMode={ToggleMode} />
           <Alert alert={alert} />
           <UserSignUpForm mode={mode} showAlert={showAlert} visible={visible} handleVisiblity={handleVisiblity} />
         </Route>
-        <Route exact path="/admin/dashboard/" >
-          <AdminDashBoard mode={mode} ToggleMode={ToggleMode}/>
-        </Route>
-        <Route exact path="/adminprofile" >
-            <AdminProfile mode={mode} ToggleMode={ToggleMode} />
-        </Route>
-        <Route exact path="/userprofile" >
-            <UserProfile mode={mode} ToggleMode={ToggleMode} />
-        </Route>
-        <Route exact path="/userdetails" >
-            <UserDetails mode={mode} ToggleMode={ToggleMode} />
-        </Route>
-        <Route exact path="/adminsupport" >
-            <AdminSupport mode={mode} ToggleMode={ToggleMode} />
-        </Route>
-        <Route exact path="/usersupport" >
-            <UserSupport mode={mode} ToggleMode={ToggleMode} />
-        </Route>
         <Route exact path="/user/dashboard" >
-          <UserDashBoard mode={mode} ToggleMode={ToggleMode}/>
+          <UserDashBoard mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/user/dashboard/userprofile" >
+          <UserProfile mode={mode} ToggleMode={ToggleMode} />
+        </Route>
+        <Route exact path="/user/dashboard/usersupport" >
+          <UserSupport mode={mode} ToggleMode={ToggleMode} />
         </Route>
       </Switch>
     </>
