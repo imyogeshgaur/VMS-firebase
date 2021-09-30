@@ -11,7 +11,7 @@ const AdminSupport = (props) => {
             <nav className={props.mode === "light" ? "side-bar" : "side-bar-dark"}>
                 <div className="user-p">
                     <img src="" alt="" />
-                    <h4>Elias</h4>
+                    <h4>Yogesh</h4>
                 </div>
                 <AdminSideBar mode={props.mode} />
             </nav>
