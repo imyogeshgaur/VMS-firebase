@@ -6,13 +6,13 @@ const UserSideBar = (props) => {
         <>
             <ul>
                 <li>
-                    <NavLink to="/userprofile">
+                    <NavLink to="/user/dashboard/userprofile">
                         <i className={props.mode === "light" ? "form-check-label  text-dark fa fa-user" : "form-check-label text-light fa fa-user"} aria-hidden="true"></i>
                         <span className={props.mode === "light" ? "form-check-label  text-dark" : "form-check-label text-light"}>My Profile</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/usersupport">
+                    <NavLink to="/user/dashboard/usersupport">
                         <i className={props.mode === "light" ? "form-check-label  text-dark fa fa-comment-o" : "form-check-label text-light fa fa-comment-o"} aria-hidden="true"></i>
                         <span className={props.mode === "light" ? "form-check-label  text-dark" : "form-check-label text-light"}>Support</span>
                     </NavLink>
